@@ -29,8 +29,7 @@ When('presiona el botón de inicio de sesión', async function () {
 });
 
 When('el usuario cierra sesión', async function () {
-  await this.pages.inventario.clickear(this.pages.inventario.botonMenu);
-  await this.pages.inventario.clickear(this.pages.inventario.linkLogout);
+  await this.pages.inventario.cerrarSesion();
 });
 
 Then('el usuario visualiza la página de productos', async function () {
@@ -49,12 +48,11 @@ Then('el catálogo muestra {int} productos', async function (cantidadEsperada) {
 });
 
 Then('se muestra el mensaje de error {string}', async function (mensajeEsperado) {
-  const contenedorError = this.pages.login.mensajeError;
   assert.ok(
-    await this.pages.login.estaVisible(contenedorError),
+    await this.pages.login.hayMensajeError(),
     'No se mostró ningún mensaje de error en pantalla'
   );
-  assert.equal(await this.pages.login.textoDe(contenedorError), mensajeEsperado);
+  assert.equal(await this.pages.login.obtenerMensajeError(), mensajeEsperado);
 });
 
 Then('el usuario permanece en la página de inicio de sesión', async function () {

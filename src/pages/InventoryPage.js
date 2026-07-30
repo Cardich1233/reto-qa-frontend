@@ -49,6 +49,11 @@ class InventoryPage extends BasePage {
     await this.clickear(this.iconoCarrito);
   }
 
+  async cerrarSesion() {
+    await this.clickear(this.botonMenu);
+    await this.clickear(this.linkLogout);
+  }
+
   async obtenerTitulo() {
     return this.textoDe(this.titulo);
   }

@@ -30,6 +30,14 @@ class LoginPage extends BasePage {
     await this.presionarLogin();
   }
 
+  async hayMensajeError() {
+    return this.estaVisible(this.mensajeError);
+  }
+
+  async obtenerMensajeError() {
+    return this.textoDe(this.mensajeError);
+  }
+
   async estaEnLaPagina() {
     return this.estaVisible(this.btnLogin);
   }

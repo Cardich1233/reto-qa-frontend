@@ -24,6 +24,10 @@ class CheckoutPage extends BasePage {
     this.tituloConfirmacion = page.locator('.complete-header');
   }
 
+  async estaEnFormularioDeDatos() {
+    return this.estaVisible(this.inputNombre);
+  }
+
   async completarDatosPersonales({ nombre, apellido, codigoPostal }) {
     await this.escribir(this.inputNombre, nombre);
     await this.escribir(this.inputApellido, apellido);

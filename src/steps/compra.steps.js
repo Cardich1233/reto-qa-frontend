@@ -4,7 +4,7 @@ const { When, Then } = require('@cucumber/cucumber');
 When('continúa con el proceso de compra', async function () {
   await this.pages.carrito.irACheckout();
   assert.ok(
-    await this.pages.checkout.estaVisible(this.pages.checkout.inputNombre),
+    await this.pages.checkout.estaEnFormularioDeDatos(),
     'No se llegó al formulario de datos del comprador'
   );
 });
