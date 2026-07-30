@@ -48,10 +48,6 @@ class BasePage {
   async urlActual() {
     return this.page.url();
   }
-
-  async capturaDePantalla() {
-    return this.page.screenshot({ fullPage: true });
-  }
 }
 
 module.exports = { BasePage };

@@ -4,11 +4,9 @@ const { BasePage } = require('./BasePage');
 class CartPage extends BasePage {
   constructor(page) {
     super(page);
-    this.titulo = page.locator('.title');
     this.items = page.locator('.cart_item');
     this.nombresItem = page.locator('.cart_item .inventory_item_name');
     this.btnCheckout = page.locator('#checkout');
-    this.btnSeguirComprando = page.locator('#continue-shopping');
   }
 
   filaDe(nombreProducto) {
@@ -19,10 +17,6 @@ class CartPage extends BasePage {
 
   async estaEnLaPagina() {
     return (await this.urlActual()).includes('/cart.html');
-  }
-
-  async obtenerTitulo() {
-    return this.textoDe(this.titulo);
   }
 
   async listarProductos() {

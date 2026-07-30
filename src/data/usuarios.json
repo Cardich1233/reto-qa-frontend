@@ -8,15 +8,5 @@
     "username": "locked_out_user",
     "password": "secret_sauce",
     "descripcion": "Usuario bloqueado por el sistema"
-  },
-  "problem_user": {
-    "username": "problem_user",
-    "password": "secret_sauce",
-    "descripcion": "Usuario con defectos visuales conocidos"
-  },
-  "performance_glitch_user": {
-    "username": "performance_glitch_user",
-    "password": "secret_sauce",
-    "descripcion": "Usuario con degradación de performance"
   }
 }

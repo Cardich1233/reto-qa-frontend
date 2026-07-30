@@ -6,10 +6,8 @@ class InventoryPage extends BasePage {
     super(page);
     this.titulo = page.locator('.title');
     this.productos = page.locator('.inventory_item');
-    this.nombresProducto = page.locator('.inventory_item_name');
     this.iconoCarrito = page.locator('.shopping_cart_link');
     this.contadorCarrito = page.locator('.shopping_cart_badge');
-    this.selectOrden = page.locator('.product_sort_container');
     this.botonMenu = page.locator('#react-burger-menu-btn');
     this.linkLogout = page.locator('#logout_sidebar_link');
   }
@@ -38,16 +36,8 @@ class InventoryPage extends BasePage {
     await this.clickear(this.botonAgregarDe(nombreProducto));
   }
 
-  async removerProducto(nombreProducto) {
-    await this.clickear(this.botonAgregarDe(nombreProducto));
-  }
-
   async textoBotonDe(nombreProducto) {
     return this.textoDe(this.botonAgregarDe(nombreProducto));
-  }
-
-  async precioDe(nombreProducto) {
-    return this.textoDe(this.tarjetaDe(nombreProducto).locator('.inventory_item_price'));
   }
 
   async obtenerContadorCarrito() {

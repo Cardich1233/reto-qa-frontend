@@ -12,8 +12,6 @@ class CheckoutPage extends BasePage {
     this.inputApellido = page.locator('#last-name');
     this.inputCodigoPostal = page.locator('#postal-code');
     this.btnContinuar = page.locator('#continue');
-    this.btnCancelar = page.locator('#cancel');
-    this.mensajeError = page.locator('[data-test="error"]');
 
     // Paso 2 — Resumen de la orden
     this.items = page.locator('.cart_item');
@@ -24,9 +22,6 @@ class CheckoutPage extends BasePage {
 
     // Paso 3 — Confirmación
     this.tituloConfirmacion = page.locator('.complete-header');
-    this.textoConfirmacion = page.locator('.complete-text');
-    this.btnVolverAProductos = page.locator('#back-to-products');
-    this.titulo = page.locator('.title');
   }
 
   async completarDatosPersonales({ nombre, apellido, codigoPostal }) {
@@ -41,14 +36,6 @@ class CheckoutPage extends BasePage {
 
   async finalizarCompra() {
     await this.clickear(this.btnFinalizar);
-  }
-
-  async obtenerMensajeError() {
-    return this.textoDe(this.mensajeError);
-  }
-
-  async obtenerTitulo() {
-    return this.textoDe(this.titulo);
   }
 
   async obtenerMensajeConfirmacion() {

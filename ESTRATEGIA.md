@@ -175,6 +175,6 @@ listas completas, no la mera existencia de la tabla.
 
 1. Ejecución en paralelo (`parallel: 4`) — la arquitectura ya lo soporta.
 2. Matriz de navegadores en CI (chromium / firefox / webkit) vía `BROWSER`.
-3. Cobertura de `problem_user` y `performance_glitch_user`, ya presentes en el
-   data pool.
+3. Cobertura de `problem_user` y `performance_glitch_user`: basta con agregarlos
+   al data pool, sin tocar features ni steps.
 4. Trace viewer de Playwright en los fallos, para depuración paso a paso.

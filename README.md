@@ -45,7 +45,6 @@ npm test
 | `npm run test:compra` | Sólo la característica de compra |
 | `npm run test:positivo` | Sólo los escenarios positivos |
 | `npm run test:negativo` | Sólo los escenarios negativos |
-| `npm run report` | Abre el reporte HTML en el navegador |
 
 Filtrado libre por etiquetas:
 
@@ -120,6 +119,7 @@ frontend-saucedemo/
 │   └── data/                    # Datos de prueba externalizados
 │       ├── usuarios.json
 │       └── datosCompra.json
+├── .github/workflows/e2e.yml    # Integración continua
 └── reports/                     # Generado en cada corrida
 ```
 
@@ -135,9 +135,8 @@ frontend-saucedemo/
 | 4 | Ver los productos agregados en el carrito | `carrito.feature` | `@CA04` |
 | 5 | Completar la compra hasta la confirmación | `compra.feature` (1 y 3 productos) | `@CA05` |
 
-Usuarios exigidos por el reto: `standard_user` y `locked_out_user`
-(ambos en `src/data/usuarios.json`, junto con `problem_user` y
-`performance_glitch_user` listos para ampliar la cobertura).
+Usuarios exigidos por el reto: `standard_user` y `locked_out_user`, ambos
+definidos en `src/data/usuarios.json`.
 
 ---
 

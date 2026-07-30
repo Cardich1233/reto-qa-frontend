@@ -8,8 +8,6 @@ class LoginPage extends BasePage {
     this.inputPassword = page.locator('#password');
     this.btnLogin = page.locator('#login-button');
     this.mensajeError = page.locator('[data-test="error"]');
-    this.btnCerrarError = page.locator('.error-button');
-    this.logo = page.locator('.login_logo');
   }
 
   async abrir() {
@@ -30,14 +28,6 @@ class LoginPage extends BasePage {
   async iniciarSesion(usuario, password) {
     await this.ingresarCredenciales(usuario, password);
     await this.presionarLogin();
-  }
-
-  async obtenerMensajeError() {
-    return this.textoDe(this.mensajeError);
-  }
-
-  async hayMensajeError() {
-    return this.estaVisible(this.mensajeError);
   }
 
   async estaEnLaPagina() {

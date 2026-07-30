@@ -12,7 +12,6 @@
     "test:smoke": "cucumber-js --tags @smoke",
     "test:positivo": "cucumber-js --tags @positivo",
     "test:negativo": "cucumber-js --tags @negativo",
-    "report": "node scripts/abrir-reporte.js",
     "postinstall": "playwright install chromium"
   },
   "keywords": [
