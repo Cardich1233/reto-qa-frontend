@@ -1,5 +1,7 @@
 # Reto de Automatización QA — FrontEnd (Sauce Demo)
 
+[![E2E Sauce Demo](https://github.com/Cardich1233/reto-qa-frontend/actions/workflows/e2e.yml/badge.svg)](https://github.com/Cardich1233/reto-qa-frontend/actions/workflows/e2e.yml)
+
 Suite de pruebas E2E de [Sauce Demo](https://www.saucedemo.com/) construida con
 **Playwright + Cucumber (Gherkin)** y **Page Object Model**.
 
@@ -139,7 +141,27 @@ Usuarios exigidos por el reto: `standard_user` y `locked_out_user`
 
 ---
 
-## 8. Informe de estrategia
+## 8. Integración continua (GitHub Actions)
+
+El workflow [`.github/workflows/e2e.yml`](.github/workflows/e2e.yml) ejecuta la
+suite completa en Ubuntu con Chromium.
+
+| Disparador | Cuándo |
+|---|---|
+| `push` a `main` | En cada integración |
+| `pull_request` a `main` | Antes de aprobar cualquier cambio |
+| `schedule` | Regresión de lunes a viernes, 07:00 hora de Lima |
+| `workflow_dispatch` | Ejecución manual desde la pestaña **Actions**, con filtro opcional de etiquetas (ej. `@smoke`) |
+
+Cada ejecución deja:
+
+- Un **resumen** con el conteo de escenarios en la portada del run.
+- Un **artefacto** (`reporte-cucumber-N`) con el reporte HTML y las capturas de
+  los escenarios fallidos, descargable durante 14 días.
+
+---
+
+## 9. Informe de estrategia
 
 El detalle de la estrategia de automatización y los patrones aplicados está en
 [ESTRATEGIA.md](ESTRATEGIA.md).

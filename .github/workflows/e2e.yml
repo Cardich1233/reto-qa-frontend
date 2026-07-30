@@ -1,0 +1,79 @@
+name: E2E Sauce Demo
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Regresión programada: 12:00 UTC = 07:00 Lima, de lunes a viernes.
+  schedule:
+    - cron: '0 12 * * 1-5'
+  # Ejecución manual desde la pestaña Actions, con filtro opcional de etiquetas.
+  workflow_dispatch:
+    inputs:
+      etiquetas:
+        description: 'Filtro de etiquetas Cucumber (ej. @smoke, "@carrito and @positivo")'
+        required: false
+        default: ''
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  e2e:
+    name: Suite E2E (chromium)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Instalar Chromium y sus librerías de sistema
+        run: npx playwright install --with-deps chromium
+
+      - name: Ejecutar la suite
+        id: suite
+        shell: bash
+        run: |
+          set -o pipefail
+          if [ -n "${{ inputs.etiquetas }}" ]; then
+            npx cucumber-js --tags "${{ inputs.etiquetas }}" 2>&1 | tee salida.txt
+          else
+            npx cucumber-js 2>&1 | tee salida.txt
+          fi
+
+      - name: Publicar el resumen de la ejecución
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Resultado de la suite E2E — Sauce Demo"
+            echo ""
+            echo '```'
+            tail -n 6 salida.txt 2>/dev/null || echo "La suite no llegó a producir salida."
+            echo '```'
+            echo ""
+            echo "El reporte HTML y las capturas de los escenarios fallidos están en los artefactos de esta ejecución."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publicar reporte y evidencias
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reporte-cucumber-${{ github.run_number }}
+          path: |
+            reports/
+            salida.txt
+          retention-days: 14
+          if-no-files-found: warn
