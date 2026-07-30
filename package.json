@@ -1,0 +1,31 @@
+{
+  "name": "reto-qa-frontend-saucedemo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Suite de pruebas E2E de Sauce Demo con Playwright + Cucumber aplicando Page Object Model",
+  "scripts": {
+    "test": "cucumber-js",
+    "test:headed": "cross-env HEADLESS=false cucumber-js",
+    "test:login": "cucumber-js --tags @login",
+    "test:carrito": "cucumber-js --tags @carrito",
+    "test:compra": "cucumber-js --tags @compra",
+    "test:smoke": "cucumber-js --tags @smoke",
+    "test:positivo": "cucumber-js --tags @positivo",
+    "test:negativo": "cucumber-js --tags @negativo",
+    "report": "node scripts/abrir-reporte.js",
+    "postinstall": "playwright install chromium"
+  },
+  "keywords": [
+    "playwright",
+    "cucumber",
+    "gherkin",
+    "page-object-model",
+    "qa-automation"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.3.0",
+    "cross-env": "^7.0.3",
+    "playwright": "^1.50.0"
+  }
+}

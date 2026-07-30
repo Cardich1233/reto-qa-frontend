@@ -1,0 +1,12 @@
+{
+  "valido": {
+    "nombre": "Sebastian",
+    "apellido": "Cardenas",
+    "codigoPostal": "15001"
+  },
+  "sinCodigoPostal": {
+    "nombre": "Sebastian",
+    "apellido": "Cardenas",
+    "codigoPostal": ""
+  }
+}
